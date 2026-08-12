@@ -1,5 +1,5 @@
 function isAnagram(s: string, t: string): boolean {
-  const count = new Map<string, number>();
+  const count: Map<string, number> = new Map<string, number>();
 
   if (s.length !== t.length) {
     return false;
@@ -10,7 +10,7 @@ function isAnagram(s: string, t: string): boolean {
   }
 
   for (const char of t) {
-    const current = count.get(char);
+    const current: number | undefined = count.get(char);
 
     if (!current) {
       return false;

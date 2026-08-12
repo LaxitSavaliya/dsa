@@ -1,5 +1,5 @@
 function findDuplicate(nums: number[]): number {
-  const seen = new Set<number>();
+  const seen: Set<number> = new Set<number>();
 
   for (const num of nums) {
     if (seen.has(num)) {

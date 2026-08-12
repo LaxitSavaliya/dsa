@@ -1,5 +1,5 @@
 function firstUniqChar(s: string): number {
-  const count = new Map<string, number>();
+  const count: Map<string, number> = new Map<string, number>();
 
   for (const char of s) {
     count.set(char, (count.get(char) ?? 0) + 1);

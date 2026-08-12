@@ -1,8 +1,8 @@
 function majorityElement(nums: number[]): number {
-  const count = new Map<number, number>();
+  const count: Map<number, number> = new Map<number, number>();
 
   for (const num of nums) {
-    const currentCount = (count.get(num) || 0) + 1;
+    const currentCount: number = (count.get(num) || 0) + 1;
 
     count.set(num, currentCount);
 

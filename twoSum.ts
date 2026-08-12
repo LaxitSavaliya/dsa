@@ -1,15 +1,15 @@
 function twoSum(nums: number[], target: number): number[] {
-  const seen = new Map<number, number>();
+  const seen: Map<number, number> = new Map<number, number>();
 
   for (let i = 0; i < nums.length; i++) {
-    const needed = target - nums[i];
-    const previousIndex = seen.get(needed);
+    const needed: number = target - nums[i];
+    const previousIndex: number | undefined = seen.get(needed);
 
     if (previousIndex !== undefined) {
       return [previousIndex, i];
-    } else {
-      seen.set(nums[i], i);
     }
+
+    seen.set(nums[i], i);
   }
 
   return [];

@@ -1,5 +1,5 @@
 function missingNumber(nums: number[]): number {
-  const seen = new Set<number>(nums);
+  const seen: Set<number> = new Set<number>(nums);
 
   for (let i = 0; i < nums.length; i++) {
     if (!seen.has(i)) {
@@ -11,10 +11,10 @@ function missingNumber(nums: number[]): number {
 }
 
 // function missingNumber(nums: number[]): number {
-//   const n = nums.length;
-//   const expectedSum = (n * (n + 1)) / 2;
+//   const n: number = nums.length;
+//   const expectedSum: number = (n * (n + 1)) / 2;
 
-//   let actualSum = 0;
+//   let actualSum: number = 0;
 
 //   for (const num of nums) {
 //     actualSum += num;

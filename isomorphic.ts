@@ -3,12 +3,12 @@ function isIsomorphic(s: string, t: string): boolean {
     return false;
   }
 
-  const sToT = new Map<string, string>();
-  const tToS = new Map<string, string>();
+  const sToT: Map<string, string> = new Map<string, string>();
+  const tToS: Map<string, string> = new Map<string, string>();
 
   for (let i = 0; i < s.length; i++) {
-    const sChar = s[i];
-    const tChar = t[i];
+    const sChar: string = s[i];
+    const tChar: string = t[i];
 
     if (sToT.has(sChar) && sToT.get(sChar) !== tChar) {
       return false;

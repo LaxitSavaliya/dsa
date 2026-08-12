@@ -11,7 +11,7 @@ function isValid(s: string): boolean {
       return false;
     }
 
-    const last = stack[stack.length - 1];
+    const last: string = stack[stack.length - 1];
     if (
       (char === ")" && last !== "(") ||
       (char === "]" && last !== "[") ||
