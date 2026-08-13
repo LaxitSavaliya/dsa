@@ -1,39 +1,51 @@
 function merge(nums1: number[], m: number, nums2: number[], n: number): void {
-  const map = new Map();
+  let i = 0;
+  let j = 0;
 
-  for (const num of nums2) {
-    map.set(num, (map.get(num) || 0) + 1);
-  }
-
-  let k = 0
-
-  while(k!==-1) {
-    const getPrev: number | undefined = map.get(nums1[k] - 1);
-    const getNext: number | undefined = map.get(nums1[k] + 1);
-
-    if(getPrev !== undefined && getNext !== undefined) {
-      nums1.pop() && nums1.splice(k+1, 0, getNext);
-      nums1.pop() && nums1.splice(k, 0, getPrev);
-
-      k = k+3;
-    } else if (getPrev !== undefined) {
-      nums1.pop() && nums1.splice(k, 0, getPrev);
-      k = k + 2
-    } else if (getNext !== undefined) {
-      nums1.pop() && nums1.splice(k+1, 0, getNext);
-      k = k + 2
+  while (j < n) {
+    if (i - j >= m) {
+      if (nums1[i] === 0) {
+        nums1.splice(i, 0, nums2[j]);
+        nums1.pop();
+        j++;
+      }
+      if (nums1[i] < nums2[j]) {
+        nums1.splice(i + 1, 0, nums2[j]);
+        nums1.pop();
+        j++;
+      }
     }
-  }
-
-  for (let i = 0; i < nums1.length; i++) {
-    const getPrev: number | undefined = map.get(nums1[i] - 1);
-    const getNext: number | undefined = map.get(nums1[i] + 1);
-
-    if (getPrev !== undefined) {
-      nums1[]
+    if (nums1[i] > nums2[j]) {
+      nums1.splice(i, 0, nums2[j]);
+      nums1.pop();
+      j++;
     }
+    i++;
   }
+
+  console.log(nums1);
 }
+
+// function merge(nums1: number[], m: number, nums2: number[], n: number): void {
+//   let i = m - 1;
+//   let j = n - 1;
+//   let k = m + n - 1;
+
+//   while (j >= 0) {
+//     if (i >= 0 && nums1[i] > nums2[j]) {
+//       nums1[k] = nums1[i];
+//       i--;
+//     } else {
+//       nums1[k] = nums2[j];
+//       j--;
+//     }
+
+//     k--;
+//   }
+// }
+
+merge([-1, 0, 1, 1, 0, 0, 0, 0, 0], 4, [-1, 0, 2, 2, 3], 5);
+// [-1,-1,0,0,1,1,2,2,3]
 
 merge([1, 2, 3, 0, 0, 0], 3, [2, 5, 6], 3);
 // expected: [1, 2, 2, 3, 5, 6]
