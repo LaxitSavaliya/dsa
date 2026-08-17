@@ -2,131 +2,60 @@
 //   let roman: string = "";
 //   const str = String(num);
 
+//   const one = ["", "I", "X", "C", "M"];
+//   const five = ["", "V", "L", "D"];
+//   const ten = ["", "X", "C", "M"];
+
 //   for (let i = 0; i < str.length; i++) {
-//     const c = Number(str[i]) - 5;
-//     let n = Math.min(Number(str[i]), Math.abs(c));
-//     if (n > 3) {
-//       n = 1;
-//     }
-//     let temp = "";
-//     if (str.length - i === 4) {
-//       for (let j = 0; j < n; j++) {
-//         temp += "M";
-//       }
-//     } else if (str.length - i === 3) {
-//       if (c >= 0 && c <= 3) {
-//         temp += "D";
-//       }
-//       for (let j = 0; j < n; j++) {
-//         temp += "C";
-//       }
-//       if (c === -1) {
-//         temp += "D";
-//       }
-//       if (c > 3) {
-//         temp += "M";
-//       }
-//     } else if (str.length - i === 2) {
-//       if (c >= 0 && c <= 3) {
-//         temp += "L";
-//       }
-//       for (let j = 0; j < n; j++) {
-//         temp += "X";
-//       }
-//       if (c === -1) {
-//         temp += "L";
-//       }
-//       if (c > 3) {
-//         temp += "C";
-//       }
-//     } else if (str.length - i === 1) {
-//       if (c >= 0 && c <= 3) {
-//         temp += "V";
-//       }
-//       for (let j = 0; j < n; j++) {
-//         temp += "I";
-//       }
-//       if (c === -1) {
-//         temp += "V";
-//       }
-//       if (c > 3) {
-//         temp += "X";
+//     const digit = Number(str[i]);
+//     const place = str.length - i;
+//     const n =
+//       digit !== 4 ? (digit > 4 ? (digit > 8 ? 1 : digit - 5) : digit) : 1;
+
+//     let a = "";
+//     let b = "";
+
+//     if (digit >= 4) {
+//       if (digit === 4) {
+//         b += five[place];
+//       } else if (digit === 9) {
+//         b += ten[place];
+//       } else {
+//         a += five[place];
 //       }
 //     }
 
-//     roman += temp;
+//     for (let j = 0; j < n; j++) {
+//       a += one[place];
+//     }
+
+//     const c = a + b;
+//     roman += c;
 //   }
 
 //   return roman;
 // }
 
-// M
-
 function intToRoman(num: number): string {
+  const str: string = String(num);
   let roman: string = "";
-  const str = String(num);
+
+  const one: string[] = ["", "I", "X", "C", "M"];
+  const five: string[] = ["", "V", "L", "D"];
+  const ten: string[] = ["", "X", "C", "M"];
 
   for (let i = 0; i < str.length; i++) {
-    if (str[i] === "1" || str[i] === "2" || str[i] === "3") {
-      if (str.length - i === 4) {
-        for (let j = 0; j < Number(str[i]); j++) {
-          roman += "M";
-        }
-      } else if (str.length - i === 3) {
-        for (let j = 0; j < Number(str[i]); j++) {
-          roman += "C";
-        }
-      } else if (str.length - i === 2) {
-        for (let j = 0; j < Number(str[i]); j++) {
-          roman += "X";
-        }
-      } else if (str.length - i === 1) {
-        for (let j = 0; j < Number(str[i]); j++) {
-          roman += "I";
-        }
-      }
-    } else if (str[i] === "4") {
-      if (str.length - i === 3) {
-        roman += "CD";
-      } else if (str.length - i === 2) {
-        roman += "XL";
-      } else if (str.length - i === 1) {
-        roman += "IV";
-      }
-    } else if (
-      str[i] === "5" ||
-      str[i] === "6" ||
-      str[i] === "7" ||
-      str[i] === "8"
-    ) {
-      const n = Number(str[i]) - 5;
-      let temp = "";
-      if (str.length - i === 3) {
-        temp += "D";
-        for (let j = 0; j < n; j++) {
-          temp += "C";
-        }
-      } else if (str.length - i === 2) {
-        temp += "L";
-        for (let j = 0; j < n; j++) {
-          temp += "X";
-        }
-      } else if (str.length - i === 1) {
-        temp += "V";
-        for (let j = 0; j < n; j++) {
-          temp += "I";
-        }
-      }
+    const digit: number = Number(str[i]);
+    const place: number = str.length - i;
 
-      roman += temp;
-    } else if (str[i] === "9") {
-      if (str.length - i === 3) {
-        roman += "CM";
-      } else if (str.length - i === 2) {
-        roman += "XC";
-      } else if (str.length - i === 1) {
-        roman += "IX";
-      }
+    if (digit <= 3) {
+      roman += one[place].repeat(digit);
+    } else if (digit === 4) {
+      roman += one[place] + five[place];
+    } else if (digit <= 8) {
+      roman += five[place] + one[place].repeat(digit - 5);
+    } else {
+      roman += one[place] + ten[place];
     }
   }
 
